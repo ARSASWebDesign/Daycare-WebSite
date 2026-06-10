@@ -1,0 +1,80 @@
+<section id="contact" class="gradient-hero py-20">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+      Listo para digitalizar tu jardín?
+    </h2>
+    <p class="text-lg text-blue-100/90 mb-10 max-w-xl mx-auto">
+      Dejanos tus datos y te contactamos en menos de 24 horas para coordinar
+      una demo personalizada sin compromiso.
+    </p>
+
+    @if (!submitted()) {
+      <form #contactForm="ngForm" (ngSubmit)="onSubmit($event)" class="max-w-lg mx-auto bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <input
+            type="text"
+            name="nombre"
+            [(ngModel)]="nombre"
+            placeholder="Nombre completo"
+            required
+            class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 text-gray-900 placeholder-gray-400 text-sm focus:ring-2 focus:ring-white/50 outline-none"
+          />
+          <input
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            placeholder="Email"
+            required
+            class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 text-gray-900 placeholder-gray-400 text-sm focus:ring-2 focus:ring-white/50 outline-none"
+          />
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <input
+            type="tel"
+            name="telefono"
+            [(ngModel)]="telefono"
+            placeholder="Teléfono"
+            class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 text-gray-900 placeholder-gray-400 text-sm focus:ring-2 focus:ring-white/50 outline-none"
+          />
+          <input
+            type="text"
+            name="institucion"
+            [(ngModel)]="institucion"
+            placeholder="Nombre de la institución"
+            required
+            class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 text-gray-900 placeholder-gray-400 text-sm focus:ring-2 focus:ring-white/50 outline-none"
+          />
+        </div>
+        <div class="mb-6">
+          <select
+            name="alumnos"
+            [(ngModel)]="alumnos"
+            required
+            class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 text-gray-900 text-sm focus:ring-2 focus:ring-white/50 outline-none"
+          >
+            <option value="" disabled selected>¿Cuántos alumnos tiene tu institución?</option>
+            <option value="1-30">1 - 30 alumnos</option>
+            <option value="31-100">31 - 100 alumnos</option>
+            <option value="101-200">101 - 200 alumnos</option>
+            <option value="200+">Más de 200 alumnos</option>
+          </select>
+        </div>
+        <button
+          type="submit"
+          class="w-full px-8 py-4 text-base font-bold text-primary bg-white rounded-xl hover:bg-gray-50 transition shadow-lg shadow-blue-900/20"
+        >
+          Solicitar Demo Gratuita
+        </button>
+        <p class="text-xs text-blue-200/70 mt-4">
+          Sin compromiso · No necesitás tarjeta de crédito · Respondemos en 24hs
+        </p>
+      </form>
+    } @else {
+      <div class="max-w-lg mx-auto bg-green-500/20 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30 animate-fade-in">
+        <div class="text-5xl mb-4" aria-hidden="true">✅</div>
+        <h3 class="text-2xl font-bold text-white mb-2">¡Gracias por tu interés!</h3>
+        <p class="text-blue-100">Te vamos a contactar dentro de las próximas 24 horas para coordinar tu demo personalizada.</p>
+      </div>
+    }
+  </div>
+</section>

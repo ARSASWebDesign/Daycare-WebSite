@@ -1,0 +1,36 @@
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-sm font-semibold text-primary uppercase tracking-wider">El problema</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">
+        ¿Seguís usando papel, Excel y WhatsApp?
+      </h2>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        La mayoría de los jardines de infantes en Argentina gestionan su operación
+        con herramientas sueltas. El resultado: información dispersa, errores y
+        horas perdidas en tareas administrativas.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      @for (problem of problems; track problem.title) {
+        <div class="bg-red-50 rounded-xl p-6 border border-red-100 card-hover">
+          <div class="text-3xl mb-3" aria-hidden="true">{{ problem.icon }}</div>
+          <h3 class="font-semibold text-gray-900 mb-2">{{ problem.title }}</h3>
+          <p class="text-sm text-gray-600">{{ problem.description }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="mt-16 text-center max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-3 bg-primary-50 rounded-full px-6 py-2 mb-4">
+        <span class="text-xl" aria-hidden="true">💡</span>
+        <span class="text-sm font-semibold text-primary">DayCare Manager resuelve todo esto</span>
+      </div>
+      <p class="text-xl text-gray-700 font-medium">
+        Una plataforma única, diseñada para la educación inicial argentina,
+        que centraliza cada aspecto de tu institución.
+      </p>
+    </div>
+  </div>
+</section>

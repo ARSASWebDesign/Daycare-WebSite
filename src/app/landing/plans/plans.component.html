@@ -1,0 +1,76 @@
+<section id="plans" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-sm font-semibold text-primary uppercase tracking-wider">Planes</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">
+        Un plan para cada institución
+      </h2>
+      <p class="text-lg text-gray-600">
+        Precios en pesos argentinos, sin sorpresas. Cancelá cuando quieras.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      @for (plan of plans; track plan.name) {
+        <div
+          class="bg-white rounded-2xl p-8 border card-hover shadow-sm relative"
+          [class.border-gray-200]="!plan.recommended"
+          [class.border-2]="plan.recommended"
+          [class.border-primary]="plan.recommended"
+          [class.shadow-xl]="plan.recommended"
+        >
+          @if (plan.recommended) {
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">
+              RECOMENDADO
+            </div>
+          }
+
+          <h3 class="text-xl font-bold text-gray-900 mb-1">{{ plan.name }}</h3>
+          <p class="text-sm text-gray-500 mb-6">{{ plan.subtitle }}</p>
+
+          <div class="mb-6">
+            <span class="text-4xl font-extrabold text-gray-900">{{ plan.price }}</span>
+            <span class="text-gray-500 text-sm">/mes</span>
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            @for (feature of plan.features; track feature.text) {
+              <li class="flex items-start gap-3">
+                @if (feature.included) {
+                  <span class="text-green-500 mt-0.5">✓</span>
+                } @else {
+                  <span class="text-gray-300 mt-0.5">✗</span>
+                }
+                <span class="text-sm" [class.text-gray-600]="feature.included" [class.text-gray-400]="!feature.included">
+                  {{ feature.text }}
+                </span>
+              </li>
+            }
+          </ul>
+
+          @if (plan.recommended) {
+            <a
+              href="#contact"
+              class="block text-center w-full px-6 py-3 text-sm font-bold text-white bg-primary rounded-xl hover:bg-primary-hover transition shadow-lg shadow-blue-200"
+            >
+              {{ plan.cta }}
+            </a>
+          } @else {
+            <a
+              href="#contact"
+              class="block text-center w-full px-6 py-3 text-sm font-semibold text-primary border-2 border-primary rounded-xl hover:bg-primary-50 transition"
+            >
+              {{ plan.cta }}
+            </a>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="text-center mt-10">
+      <p class="text-sm text-gray-500">
+        ❄️ ¿Tenés más de 50 alumnos? Consultá por nuestros descuentos por volumen.
+      </p>
+    </div>
+  </div>
+</section>

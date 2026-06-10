@@ -1,0 +1,26 @@
+<section id="faq" class="py-20 bg-gray-50">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-sm font-semibold text-primary uppercase tracking-wider">FAQ</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3">
+        Preguntas frecuentes
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      @for (faq of faqs; track faq.question) {
+        <details class="bg-white rounded-xl p-6 border border-gray-200 group open:shadow-md transition">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900 list-none">
+            {{ faq.question }}
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="mt-4 text-sm text-gray-600 leading-relaxed">
+            {{ faq.answer }}
+          </p>
+        </details>
+      }
+    </div>
+  </div>
+</section>

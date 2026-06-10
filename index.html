@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DayCare Manager - SaaS para gestión integral de guarderías y jardines de infantes en Argentina. Digitaliza asistencia, facturación, comunicación con padres y más.">
+  <title>DayCare Manager — Gestión Integral para Guarderías</title>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#1A56DB', hover: '#1645B1', light: '#E8F0FE', 50: '#EFF6FF', 100: '#DBEAFE', 200: '#BFDBFE', 300: '#93C5FD', 400: '#60A5FA', 500: '#1A56DB', 600: '#1645B1', 700: '#1D4ED8', 800: '#1E40AF', 900: '#1E3A8A' },
+            secondary: { DEFAULT: '#64748B', light: '#F1F5F9' },
+            success: { DEFAULT: '#22C55E', light: '#F0FDF4' },
+            warning: { DEFAULT: '#F59E0B', light: '#FFFBEB' },
+            danger: { DEFAULT: '#EF4444', light: '#FEF2F2' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .gradient-hero { background: linear-gradient(135deg, #1A56DB 0%, #1E3A8A 50%, #1645B1 100%); }
+    .gradient-card { background: linear-gradient(135deg, #EFF6FF 0%, #F8FAFC 100%); }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 24px -8px rgba(26, 86, 219, 0.15); }
+    .feature-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 12px; }
+    @media (max-width: 767px) { .hero-illustration { display: none; } }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2">
+          <span class="text-2xl">🌱</span>
+          <span class="text-xl font-bold text-gray-900">DayCare <span class="text-primary">Manager</span></span>
+        </a>
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#features" class="text-sm font-medium text-gray-600 hover:text-primary transition">Funcionalidades</a>
+          <a href="#plans" class="text-sm font-medium text-gray-600 hover:text-primary transition">Planes</a>
+          <a href="#how-it-works" class="text-sm font-medium text-gray-600 hover:text-primary transition">Cómo funciona</a>
+          <a href="#faq" class="text-sm font-medium text-gray-600 hover:text-primary transition">FAQ</a>
+          <a href="#contact" class="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white bg-primary rounded-lg hover:bg-primary-hover transition shadow-sm">
+            Solicitar Demo
+          </a>
+        </div>
+        <!-- Mobile menu button -->
+        <button id="menu-btn" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Nav -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3">
+      <a href="#features" class="block text-sm font-medium text-gray-600 hover:text-primary py-2">Funcionalidades</a>
+      <a href="#plans" class="block text-sm font-medium text-gray-600 hover:text-primary py-2">Planes</a>
+      <a href="#how-it-works" class="block text-sm font-medium text-gray-600 hover:text-primary py-2">Cómo funciona</a>
+      <a href="#faq" class="block text-sm font-medium text-gray-600 hover:text-primary py-2">FAQ</a>
+      <a href="#contact" class="block text-center px-5 py-2.5 text-sm font-semibold text-white bg-primary rounded-lg hover:bg-primary-hover transition">Solicitar Demo</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="gradient-hero min-h-[90vh] flex items-center pt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left -->
+        <div class="text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            <span class="text-sm text-white/80">SaaS Argentino · Multi-sede</span>
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+            Gestioná tu jardín
+            <span class="text-blue-200">en un solo lugar</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-blue-100/90 max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+            Digitalizá la administración de tu guardería o jardín de infantes. 
+            Asistencia, facturación, comunicación con familias y reportes — 
+            todo integrado en una plataforma simple y poderosa.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-primary bg-white rounded-xl hover:bg-gray-50 transition shadow-lg shadow-blue-900/20">
+              Solicitar Demo Gratuita
+              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href="#features" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-xl hover:bg-white/10 transition">
+              Ver Funcionalidades
+            </a>
+          </div>
+          <!-- Social proof -->
+          <div class="mt-10 flex flex-wrap items-center gap-6 justify-center lg:justify-start text-white/60">
+            <div class="flex items-center gap-2">
+              <span class="text-white font-bold text-lg">100+</span>
+              <span class="text-sm">instituciones confían</span>
+            </div>
+            <div class="w-px h-6 bg-white/20 hidden sm:block"></div>
+            <div class="flex items-center gap-2">
+              <span class="text-white font-bold text-lg">3000+</span>
+              <span class="text-sm">alumnos gestionados</span>
+            </div>
+            <div class="w-px h-6 bg-white/20 hidden sm:block"></div>
+            <div class="flex items-center gap-2">
+              <span class="text-white font-bold text-lg">99.9%</span>
+              <span class="text-sm">uptime garantizado</span>
+            </div>
+          </div>
+        </div>
+        <!-- Right: Dashboard preview -->
+        <div class="hero-illustration relative">
+          <div class="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 shadow-2xl">
+            <div class="bg-white rounded-xl p-5 shadow-lg">
+              <!-- Mini dashboard mockup -->
+              <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center gap-2">
+                  <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center"><span class="text-primary text-sm font-bold">DC</span></div>
+                  <div>
+                    <p class="text-xs font-semibold text-gray-900">Jardín Rayito de Sol</p>
+                    <p class="text-xs text-gray-400">Hoy · 10 Jun 2026</p>
+                  </div>
+                </div>
+                <span class="text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-medium">Activo</span>
+              </div>
+              <!-- Stats grid -->
+              <div class="grid grid-cols-3 gap-3 mb-5">
+                <div class="bg-gray-50 rounded-lg p-3 text-center">
+                  <p class="text-2xl font-bold text-gray-900">24</p>
+                  <p class="text-xs text-gray-500">Presentes</p>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-3 text-center">
+                  <p class="text-2xl font-bold text-gray-900">3</p>
+                  <p class="text-xs text-gray-500">Ausentes</p>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-3 text-center">
+                  <p class="text-2xl font-bold text-gray-900">92%</p>
+                  <p class="text-xs text-gray-500">Asistencia</p>
+                </div>
+              </div>
+              <!-- Activity list -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg">
+                  <div class="w-7 h-7 bg-green-100 rounded-full flex items-center justify-center text-xs">✓</div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-900 truncate">Sala Amarilla — 12 presentes</p>
+                    <p class="text-xs text-gray-400">Check-in completo 08:30</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg">
+                  <div class="w-7 h-7 bg-blue-100 rounded-full flex items-center justify-center text-xs">📋</div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-900 truncate">Cuotas Julio — 15 pendientes</p>
+                    <p class="text-xs text-gray-400">3 vencidas, 12 al día</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg">
+                  <div class="w-7 h-7 bg-yellow-100 rounded-full flex items-center justify-center text-xs">📢</div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-gray-900 truncate">Circular: Acto de fin de año</p>
+                    <p class="text-xs text-gray-400">Enviada a 24 familias</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Floating badge -->
+          <div class="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-xl p-4 hidden lg:block">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">📱</div>
+              <div>
+                <p class="text-sm font-semibold text-gray-900">App para padres</p>
+                <p class="text-xs text-gray-400">Notificaciones en tiempo real</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROBLEMA / SOLUCIÓN ========== -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wider">El problema</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">
+          ¿Seguís usando papel, Excel y WhatsApp?
+        </h2>
+        <p class="text-lg text-gray-600 leading-relaxed">
+          La mayoría de los jardines de infantes en Argentina gestionan su operación 
+          con herramientas sueltas. El resultado: información dispersa, errores y 
+          horas perdidas en tareas administrativas.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-red-50 rounded-xl p-6 border border-red-100">
+          <div class="text-3xl mb-3">📝</div>
+          <h3 class="font-semibold text-gray-900 mb-2">Registro en papel</h3>
+          <p class="text-sm text-gray-600">Asistencia manuscrita que luego hay que cargar, con errores y pérdida de datos.</p>
+        </div>
+        <div class="bg-red-50 rounded-xl p-6 border border-red-100">
+          <div class="text-3xl mb-3">💬</div>
+          <h3 class="font-semibold text-gray-900 mb-2">WhatsApp desorganizado</h3>
+          <p class="text-sm text-gray-600">Comunicación con padres en grupos caóticos, mensajes perdidos, sin trazabilidad.</p>
+        </div>
+        <div class="bg-red-50 rounded-xl p-6 border border-red-100">
+          <div class="text-3xl mb-3">📊</div>
+          <h3 class="font-semibold text-gray-900 mb-2">Excel casero</h3>
+          <p class="text-sm text-gray-600">Cuentas en planillas que nadie actualiza, cobros atrasados sin visibilidad.</p>
+        </div>
+        <div class="bg-red-50 rounded-xl p-6 border border-red-100">
+          <div class="text-3xl mb-3">🔍</div>
+          <h3 class="font-semibold text-gray-900 mb-2">Sin métricas</h3>
+          <p class="text-sm text-gray-600">Imposible saber en tiempo real la asistencia, morosidad o desempeño operativo.</p>
+        </div>
+      </div>
+
+      <div class="mt-16 text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-3 bg-primary-50 rounded-full px-6 py-2 mb-4">
+          <span class="text-xl">💡</span>
+          <span class="text-sm font-semibold text-primary">DayCare Manager resuelve todo esto</span>
+        </div>
+        <p class="text-xl text-gray-700 font-medium">
+          Una plataforma única, diseñada para la educación inicial argentina, 
+          que centraliza cada aspecto de tu institución.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FEATURES ========== -->
+  <section id="features" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wider">Funcionalidades</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">
+          Todo lo que necesitás para gestionar tu jardín
+        </h2>
+        <p class="text-lg text-gray-600">
+          Módulos diseñados para cubrir cada aspecto operativo de tu institución.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-white rounded-xl p-8 border border-gray-100 card-hover shadow-sm">
+          <div class="feature-icon bg-blue-100 text-blue-600 mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Gestión de Alumnos y Familias</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Registrá alumnos con datos personales, salud, alergias y documentación. Vinculá familias enteras con múltiples contactos y autorizaciones de retiro.</p>
+        </div>
+        <!-- Feature 2 -->
+        <div class="bg-white rounded-xl p-8 border border-gray-100 card-hover shadow-sm">
+          <div class="feature-icon bg-green-100 text-green-600 mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Asistencia Digital</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Check-in y check-out con un clic. Reportes diarios, semanales y mensuales automáticos. Control de capacidad por sala en tiempo real.</p>
+        </div>
+        <!-- Feature 3 -->
+        <div class="bg-white rounded-xl p-8 border border-gray-100 card-hover shadow-sm">
+          <div class="feature-icon bg-yellow-100 text-yellow-600 mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Facturación y Cuotas</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Creá planes de cuotas (matrícula, mensualidad), generación automática de cuotas, tracking de pagos, vencimientos y recordatorios inteligentes.</p>
+        </div>
+        <!-- Feature 4 -->
+        <div class="bg-white rounded-xl p-8 border border-gray-100 card-hover shadow-sm">
+          <div class="feature-icon bg-purple-100 text-purple-600 mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Comunicación con Familias</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Notas individuales, circulares por sala o generales, adjuntos de fotos y documentos. App para padres con notificaciones push en tiempo real.</p>
+        </div>
+        <!-- Feature 5 -->
+        <div class="bg-white rounded-xl p-8 border border-gray-100 card-hover shadow-sm">
+          <div class="feature-icon bg-indigo-100 text-indigo-600 mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Reportes y Dashboards</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Paneles de control en tiempo real para directores. Reportes exportables a Excel, CSV y PDF. Métricas de asistencia, morosidad y ocupación.</p>
+        </div>
+        <!-- Feature 6 -->
+        <div class="bg-white rounded-xl p-8 border border-gray-100 card-hover shadow-sm">
+          <div class="feature-icon bg-teal-100 text-teal-600 mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Multi-sede</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">Gestioná múltiples sedes desde una misma cuenta. Configuración independiente por sede con datos centralizados para la dirección.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section id="how-it-works" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wider">Cómo funciona</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">
+          Empezar es más fácil de lo que pensás
+        </h2>
+        <p class="text-lg text-gray-600">
+          En menos de una semana tu institución puede estar funcionando con DayCare Manager.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8 relative">
+        <!-- Connector line (desktop) -->
+        <div class="hidden md:block absolute top-12 left-[12%] right-[12%] h-0.5 bg-blue-100"></div>
+
+        <div class="text-center relative">
+          <div class="w-24 h-24 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-5 relative z-10">
+            <span class="text-3xl font-bold text-primary">1</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Registrate</h3>
+          <p class="text-sm text-gray-600 max-w-xs mx-auto">Completá el formulario con los datos de tu institución. Solo tomá 5 minutos.</p>
+        </div>
+        <div class="text-center relative">
+          <div class="w-24 h-24 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-5 relative z-10">
+            <span class="text-3xl font-bold text-primary">2</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Configurá</h3>
+          <p class="text-sm text-gray-600 max-w-xs mx-auto">Cargá tus salas, alumnos y familias. Te ayudamos con la migración de datos.</p>
+        </div>
+        <div class="text-center relative">
+          <div class="w-24 h-24 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-5 relative z-10">
+            <span class="text-3xl font-bold text-primary">3</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Capacitá</h3>
+          <p class="text-sm text-gray-600 max-w-xs mx-auto">Capacitamos a tu equipo en una sesión online de 1 hora. Incluída en todos los planes.</p>
+        </div>
+        <div class="text-center relative">
+          <div class="w-24 h-24 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-5 relative z-10">
+            <span class="text-3xl font-bold text-primary">4</span>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Gestioná</h3>
+          <p class="text-sm text-gray-600 max-w-xs mx-auto">Empezá a usar el sistema el día 1. Asistencia, facturación y comunicación desde el vamos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PLANS / PRICING ========== -->
+  <section id="plans" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wider">Planes</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">
+          Un plan para cada institución
+        </h2>
+        <p class="text-lg text-gray-600">
+          Precios en pesos argentinos, sin sorpresas. Cancelá cuando quieras.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Plan Inicial -->
+        <div class="bg-white rounded-2xl p-8 border border-gray-200 card-hover shadow-sm">
+          <h3 class="text-xl font-bold text-gray-900 mb-1">Inicial</h3>
+          <p class="text-sm text-gray-500 mb-6">Para jardines pequeños</p>
+          <div class="mb-6">
+            <span class="text-4xl font-extrabold text-gray-900">$50.000</span>
+            <span class="text-gray-500 text-sm">/mes</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Hasta 30 alumnos</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">1 sede</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Gestión de alumnos y familias</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Asistencia digital</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Dashboard básico</span></li>
+            <li class="flex items-start gap-3"><span class="text-gray-300 mt-0.5">✗</span><span class="text-sm text-gray-400">Multi-sede</span></li>
+            <li class="flex items-start gap-3"><span class="text-gray-300 mt-0.5">✗</span><span class="text-sm text-gray-400">App padres</span></li>
+          </ul>
+          <a href="#contact" class="block text-center w-full px-6 py-3 text-sm font-semibold text-primary border-2 border-primary rounded-xl hover:bg-primary-50 transition">
+            Elegir Plan
+          </a>
+        </div>
+
+        <!-- Plan Profesional (Recomendado) -->
+        <div class="bg-white rounded-2xl p-8 border-2 border-primary shadow-xl card-hover relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full">
+            RECOMENDADO
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">Profesional</h3>
+          <p class="text-sm text-gray-500 mb-6">Para jardines en crecimiento</p>
+          <div class="mb-6">
+            <span class="text-4xl font-extrabold text-gray-900">$100.000</span>
+            <span class="text-gray-500 text-sm">/mes</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Hasta 100 alumnos</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Multi-sede (hasta 3)</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Todo lo del plan Inicial</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Facturación y cuotas</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Comunicación con familias</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">App para padres</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Reportes avanzados</span></li>
+          </ul>
+          <a href="#contact" class="block text-center w-full px-6 py-3 text-sm font-bold text-white bg-primary rounded-xl hover:bg-primary-hover transition shadow-lg shadow-blue-200">
+            Elegir Plan
+          </a>
+        </div>
+
+        <!-- Plan Empresarial -->
+        <div class="bg-white rounded-2xl p-8 border border-gray-200 card-hover shadow-sm">
+          <h3 class="text-xl font-bold text-gray-900 mb-1">Empresarial</h3>
+          <p class="text-sm text-gray-500 mb-6">Para cadenas y grandes instituciones</p>
+          <div class="mb-6">
+            <span class="text-4xl font-extrabold text-gray-900">$200.000+</span>
+            <span class="text-gray-500 text-sm">/mes</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Alumnos ilimitados</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Multi-sede ilimitado</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Todo lo del plan Profesional</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">App marca blanca</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">API de integración</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Soporte dedicado</span></li>
+            <li class="flex items-start gap-3"><span class="text-green-500 mt-0.5">✓</span><span class="text-sm text-gray-600">Capacitación presencial</span></li>
+          </ul>
+          <a href="#contact" class="block text-center w-full px-6 py-3 text-sm font-semibold text-primary border-2 border-primary rounded-xl hover:bg-primary-50 transition">
+            Contactar
+          </a>
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <p class="text-sm text-gray-500">
+          ❄️ ¿Tenés más de 50 alumnos? Consultá por nuestros descuentos por volumen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wider">Testimonios</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3 mb-4">
+          Lo que dicen nuestros clientes
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-50 rounded-xl p-8 border border-gray-100">
+          <div class="flex text-yellow-400 mb-4">★★★★★</div>
+          <p class="text-gray-700 mb-6 leading-relaxed">
+            "DayCare Manager nos cambió la administración. Pasamos de usar 4 planillas de Excel y 3 grupos de WhatsApp a tener todo centralizado. La asistencia digital nos ahorra 2 horas por día."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-sm">MC</div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900">María Cristina</p>
+              <p class="text-xs text-gray-500">Directora · Jardín Rayito de Sol</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 rounded-xl p-8 border border-gray-100">
+          <div class="flex text-yellow-400 mb-4">★★★★★</div>
+          <p class="text-gray-700 mb-6 leading-relaxed">
+            "Lo mejor es la comunicación con los padres. Ahora enviamos fotos, circulares y notas individuales desde la plataforma. Los papás están más conectados y conformes."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold text-sm">LP</div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900">Laura Pérez</p>
+              <p class="text-xs text-gray-500">Directora · Kinder Mis Pequeños</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 rounded-xl p-8 border border-gray-100">
+          <div class="flex text-yellow-400 mb-4">★★★★★</div>
+          <p class="text-gray-700 mb-6 leading-relaxed">
+            "Tener dos sedes era un caos administrativo. Con DayCare Manager veo las dos en un mismo dashboard, controlo cuotas y asistencia de ambas sin moverme de mi escritorio."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600 font-bold text-sm">RG</div>
+            <div>
+              <p class="text-sm font-semibold text-gray-900">Ricardo Gómez</p>
+              <p class="text-xs text-gray-500">Dueño · Jardines Mundo Infantil (2 sedes)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section id="faq" class="py-20 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-sm font-semibold text-primary uppercase tracking-wider">FAQ</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-3">
+          Preguntas frecuentes
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        <details class="bg-white rounded-xl p-6 border border-gray-200 group open:shadow-md transition">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900 list-none">
+            ¿Necesito conocimientos técnicos para usar DayCare Manager?
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-sm text-gray-600 leading-relaxed">
+            No, para nada. DayCare Manager está diseñado para que cualquier persona lo use sin experiencia técnica. 
+            La interfaz es intuitiva y además ofrecemos capacitación online gratuita incluída en todos los planes.
+          </p>
+        </details>
+
+        <details class="bg-white rounded-xl p-6 border border-gray-200 group open:shadow-md transition">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900 list-none">
+            ¿Puedo migrar mis datos desde Excel?
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-sm text-gray-600 leading-relaxed">
+            Sí, te ayudamos a migrar tus datos desde Excel u otros sistemas. Soportamos importación de alumnos, 
+            familias y planes de cuotas. El proceso es rápido y lo guiamos paso a paso.
+          </p>
+        </details>
+
+        <details class="bg-white rounded-xl p-6 border border-gray-200 group open:shadow-md transition">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900 list-none">
+            ¿Los padres necesitan instalar algo?
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-sm text-gray-600 leading-relaxed">
+            Los padres acceden desde su navegador web o desde la app progresiva (PWA) sin necesidad de instalar nada. 
+            También pueden recibir notificaciones push y ver información de sus hijos desde el celular.
+          </p>
+        </details>
+
+        <details class="bg-white rounded-xl p-6 border border-gray-200 group open:shadow-md transition">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900 list-none">
+            ¿Cómo manejan la seguridad de los datos?
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-sm text-gray-600 leading-relaxed">
+            La seguridad es nuestra prioridad. Usamos aislamiento completo de datos entre instituciones (RLS), 
+            encriptación en tránsito y en reposo, autenticación segura con JWT, y auditoría de todos los accesos. 
+            Nuestra infraestructura corre en Microsoft Azure con certificaciones internacionales.
+          </p>
+        </details>
+
+        <details class="bg-white rounded-xl p-6 border border-gray-200 group open:shadow-md transition">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900 list-none">
+            ¿Hay período de prueba gratuito?
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-sm text-gray-600 leading-relaxed">
+            Sí, ofrecemos 14 días de prueba gratuita sin compromiso ni necesidad de tarjeta de crédito. 
+            Durante el período de prueba tenés acceso completo a todas las funcionalidades del plan Profesional.
+          </p>
+        </details>
+
+        <details class="bg-white rounded-xl p-6 border border-gray-200 group open:shadow-md transition">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900 list-none">
+            ¿Dan factura AFIP?
+            <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-sm text-gray-600 leading-relaxed">
+            Sí, emitimos factura AFIP tipo A, B o C según tu condición fiscal. Además, el sistema soporta 
+            integración con AFIP para que puedas emitir tus propias facturas electrónicas desde la plataforma.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA FINAL ========== -->
+  <section id="contact" class="gradient-hero py-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+        Listo para digitalizar tu jardín?
+      </h2>
+      <p class="text-lg text-blue-100/90 mb-10 max-w-xl mx-auto">
+        Dejanos tus datos y te contactamos en menos de 24 horas para coordinar 
+        una demo personalizada sin compromiso.
+      </p>
+
+      <form class="max-w-lg mx-auto bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10" onsubmit="handleSubmit(event)">
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <input type="text" placeholder="Nombre completo" required class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 text-gray-900 placeholder-gray-400 text-sm focus:ring-2 focus:ring-white/50 outline-none">
+          <input type="email" placeholder="Email" required class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 text-gray-900 placeholder-gray-400 text-sm focus:ring-2 focus:ring-white/50 outline-none">
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <input type="tel" placeholder="Teléfono" class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 text-gray-900 placeholder-gray-400 text-sm focus:ring-2 focus:ring-white/50 outline-none">
+          <input type="text" placeholder="Nombre de la institución" required class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 text-gray-900 placeholder-gray-400 text-sm focus:ring-2 focus:ring-white/50 outline-none">
+        </div>
+        <div class="mb-6">
+          <select required class="w-full px-4 py-3 rounded-xl bg-white/90 border-0 text-gray-900 text-sm focus:ring-2 focus:ring-white/50 outline-none">
+            <option value="" disabled selected>¿Cuántos alumnos tiene tu institución?</option>
+            <option value="1-30">1 - 30 alumnos</option>
+            <option value="31-100">31 - 100 alumnos</option>
+            <option value="101-200">101 - 200 alumnos</option>
+            <option value="200+">Más de 200 alumnos</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full px-8 py-4 text-base font-bold text-primary bg-white rounded-xl hover:bg-gray-50 transition shadow-lg shadow-blue-900/20">
+          Solicitar Demo Gratuita
+        </button>
+        <p class="text-xs text-blue-200/70 mt-4">
+          Sin compromiso · No necesitás tarjeta de crédito · Respondemos en 24hs
+        </p>
+      </form>
+
+      <div id="form-success" class="hidden max-w-lg mx-auto bg-green-500/20 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30">
+        <div class="text-5xl mb-4">✅</div>
+        <h3 class="text-2xl font-bold text-white mb-2">¡Gracias por tu interés!</h3>
+        <p class="text-blue-100">Te vamos a contactar dentro de las próximas 24 horas para coordinar tu demo personalizada.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-gray-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-2xl">🌱</span>
+            <span class="text-xl font-bold">DayCare <span class="text-blue-300">Manager</span></span>
+          </div>
+          <p class="text-gray-400 text-sm max-w-md leading-relaxed">
+            La plataforma SaaS #1 de Argentina para gestionar guarderías y jardines de infantes. 
+            Digitalizamos la educación inicial.
+          </p>
+          <div class="flex gap-4 mt-6">
+            <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition"><span class="text-sm">in</span></a>
+            <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition"><span class="text-sm">fb</span></a>
+            <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition"><span class="text-sm">ig</span></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Producto</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#features" class="hover:text-white transition">Funcionalidades</a></li>
+            <li><a href="#plans" class="hover:text-white transition">Planes</a></li>
+            <li><a href="#how-it-works" class="hover:text-white transition">Cómo funciona</a></li>
+            <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Contacto</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li>hola@daycaremanager.com.ar</li>
+            <li>+54 11 5555-0123</li>
+            <li>Buenos Aires, Argentina</li>
+            <li><a href="#contact" class="hover:text-white transition">Demo gratuita</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-gray-500">© 2026 DayCare Manager. Todos los derechos reservados.</p>
+        <div class="flex gap-6 text-sm text-gray-500">
+          <a href="#" class="hover:text-gray-300 transition">Términos</a>
+          <a href="#" class="hover:text-gray-300 transition">Privacidad</a>
+          <a href="#" class="hover:text-gray-300 transition">Seguridad</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden'));
+    });
+
+    // Form handling
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.querySelector('#contact form').classList.add('hidden');
+      document.getElementById('form-success').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
